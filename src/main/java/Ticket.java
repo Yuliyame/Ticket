@@ -1,13 +1,13 @@
 import java.util.Objects;
 
-public class Ticket {
+public class Ticket implements Comparable<Ticket> {
     private String from;
     private String to;
     private int price;
     private int timeFrom;
     private int timeTo;
 
-    public Ticket(String from, String to, int price, int timeFrom, int timeTo){
+    public Ticket(String from, String to, int price, int timeFrom, int timeTo) {
         this.from = from;
         this.to = to;
         this.price = price;
@@ -18,6 +18,7 @@ public class Ticket {
     public String getFrom() {
         return from;
     }
+
     public String getTo() {
         return to;
     }
@@ -33,8 +34,10 @@ public class Ticket {
     public int getTimeTo() {
         return timeTo;
     }
+
+    // Вспомогательные методы для корректной работы equals
     @Override
-    public boolean equals(Object) {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
@@ -44,8 +47,20 @@ public class Ticket {
                 && from.equals(ticket.from)
                 && to.equals(ticket.to);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(from, to, price, timeFrom, timeTo);
+    }
+
+    @Override
+    public int compareTo(Ticket o) {
+        if (price < o.price) {
+            return -1;
+        } else if (price > o.price) {
+            return +1;
+        } else {
+            return 0;
+        }
     }
 }
