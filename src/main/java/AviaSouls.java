@@ -53,6 +53,7 @@ public class AviaSouls {
         Arrays.sort(result);
         return result;
     }
+
     public Ticket[] search(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] result = new Ticket[0]; // массив для ответа
         for (Ticket ticket : tickets) { // перебираем все билеты
